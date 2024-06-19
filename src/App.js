@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import PropertyManager from './screens/PropertyManager';
+import AdminTemplate from './template/AdminTemplate';
+import RegionManager from './screens/RegionManager';
+import PropertyTypeManager from './screens/PropertyTypeManager';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/admin/*" element={<AdminTemplate />}>
+            <Route path="property-manager" element={<PropertyManager />} />
+            <Route path="region-manager" element={<RegionManager />} />
+            <Route path="property-type-manager" element={<PropertyTypeManager />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
